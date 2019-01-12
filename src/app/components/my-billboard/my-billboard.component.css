@@ -1,0 +1,22 @@
+#billBoardBody{
+   width:95%;
+ height: auto;
+ margin:auto;
+   margin-top:100px;
+   /* margin-top:100px !important; */
+}
+#billBoardCard{
+    width:100% !important;
+    margin-top:20px;
+}
+#billBoardHeader div{ 
+   /* float:left; */
+   width:50%;
+}
+#addNewBB{
+    border: solid 1px green;
+    float:right;
+    padding:10px;
+    margin-top:1em;
+    margin-bottom:0.60em;
+}

@@ -1,0 +1,34 @@
+<div class="container" id="addBillBoardBody">
+  <div>
+    <h1>Update Billboard</h1>
+  </div>
+  <form (submit)="onBBSubmit()">
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Title</label>
+      <input [(ngModel)]="title" name="title" type="email" class="form-control" placeholder="XYZ Company Publicity Brand">
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Description</label>
+      <textarea [(ngModel)]="description" name="description" class="form-control" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Width (inch)</label>
+      <input [(ngModel)]="width" name="width" type="number" class="form-control" >
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Height (inch)</label>
+      <input [(ngModel)]="height" name="height" type="number" class="form-control" >
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Price</label>
+      <input [(ngModel)]="price" name="price" type="number" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlFile1">Picture</label>
+        <input [(ngModel)]="picture" accept="imgs/billboard_upload/*" name="picture"  type="file" class="form-control-file" id="exampleFormControlFile1">
+        <!-- (change)="onPictureSelected($event)" -->
+    </div>
+    <button type="submit" class="btn mb-2">Update</button>
+  </form>
+</div>

@@ -1,0 +1,12 @@
+<nb-card >
+    <nb-list>
+      <nb-list-item *ngFor="let us of user">
+        <p>{{us.username | uppercase}} --- <span *ngIf="us.isBlocked == 1">Blocked</span><span *ngIf="us.isBlocked == 0">Not Blocked</span></p>
+        <p>Role - <span *ngIf="us.userrole == 1">Advertisement Agent</span> <span *ngIf="us.userrole == 2">Owner/Company</span> </p>
+        
+       <button style="margin-right:20px;" class="bttn-fill bttn-md bttn-primary" *ngIf="us.isBlocked == 0 || us.isBlocked == null" (click)="blockUser(us.id)">Block</button>
+       <button style="margin-right:20px;" class="bttn-fill bttn-md bttn-primary" *ngIf="us.isBlocked == 1" (click)="unblockUser(us.id)">Unblock</button>
+       <button class="bttn-fill bttn-md bttn-primary" (click)="deleteUser(us.id)">Remove</button>
+      </nb-list-item>
+    </nb-list>
+  </nb-card>

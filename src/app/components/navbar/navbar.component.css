@@ -1,0 +1,16 @@
+button { 
+    background-color: transparent;
+    border:2px solid #25806E;
+    
+}
+.nav-btn-link{
+    float:left;
+    
+    margin:0px 0px 0px 10px;
+}
+.nav-btn{
+    margin-left:50px;
+}
+.nb-theme-default nb-layout .layout nb-layout-header nav {
+    padding:0px;
+}

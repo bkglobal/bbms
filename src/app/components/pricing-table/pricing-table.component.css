@@ -1,0 +1,150 @@
+div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+
+.pricing-switcher {
+	text-align: center;
+	margin-top:100px;
+}
+
+.pricing-switcher .fieldset {
+	display: inline-block;
+	position: relative;
+	padding: 2px;
+	border-radius: 50em;
+	border: 2px solid #25806E;
+}
+
+.pricing-switcher input[type="radio"] {
+	position: absolute;
+	opacity: 0;
+}
+
+.pricing-switcher label {
+	position: relative;
+	z-index: 1;
+	display: inline-block;
+	float: left;
+	width: 90px;
+	height: 40px;
+	line-height: 40px;
+	cursor: pointer;
+	font-size: 1.4rem;
+	color: black;
+}
+
+.pricing-switcher .switch {
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	height: 40px;
+	width: 90px;
+	background-color: #25806E;
+	border-radius: 50em;
+	-webkit-transition: -webkit-transform 0.5s;
+	-moz-transition: -moz-transform 0.5s;
+	transition: transform 0.5s;
+}
+
+.pricing-switcher input[type="radio"]:checked + label + .switch,
+.pricing-switcher input[type="radio"]:checked + label:nth-of-type(n) + .switch {
+	-webkit-transform: translateX(90px);
+	-moz-transform: translateX(90px);
+	-ms-transform: translateX(90px);
+	-o-transform: translateX(90px);
+	transform: translateX(90px);
+}
+
+.no-js .pricing-switcher {
+	display: none;
+}
+
+.dvCard{
+	padding:20px;
+	text-align: center;
+}
+
+.dvCard .card-header{
+	font-size:1.5em;
+	background-color:#25806E;
+	color:white;
+	font-weight: bold;
+	padding:5px;
+}
+.dvCard .card-body{
+	background:#09C6A0;
+	color:white;
+}
+
+.dvCard #number{
+	font-size:4em;
+}
+
+.dvCard #dollar{
+	font-size:2em;
+}
+
+.dvCard #dollar,#number,#state{
+	font-weight: bold;
+}
+
+.line{
+	text-align: left;
+	font-size:1.5em;
+}
+
+.dvCard .card-footer{
+	font-size:1.5em;
+	background-color:#25806E;
+	color:white;
+	font-weight: bold;
+	padding:5px;
+}
+
+.dvCard .card-footer button{
+	/* background:#1EA78D; */
+}
+
+.bttn-primary{
+	background:#1EA78D;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

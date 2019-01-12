@@ -1,0 +1,37 @@
+<div id="billBoardBody" >
+  <div id="billBoardHeader" >
+    <div>
+      <h1 style="width:100%;">MY BILLBOARDS       <button id="addNewBB"  class="btn" [routerLink]="['/addBillBoard']">Add New Billboard</button>
+      </h1>
+    </div>
+    <div>
+    </div>
+  </div>
+  <div *ngFor="let billBoard of billBoards" class="card" id="billBoardCard" style="width: 18rem;">
+    <div class="card-header"> 
+      <button style="float:right;" class="btn btn-success" (click)="goToEdit(billBoard)">Edit</button>
+      <button style="float:right; margin-right:10px;" class="btn btn-success" (click)="removeBoard(billBoard)">Remove</button>
+    </div>
+    <img class="card-img-top" style="width:200px;" [src]="billBoard.image" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{billBoard.title}}</h5>
+      <p class="card-text">{{billBoard.description}}</p>
+      <div>
+        <div style="width:50%; float:left;">
+          Price : {{billBoard.price}}
+        </div>
+        <div style="width:50%; float:left;">
+          Status: {{billBoard.status}}
+        </div>
+      </div>
+      <div>
+        <div style="width:50%; float:left;">
+          Width : {{billBoard.width}}
+        </div>
+        <div style="width:50%; float:left;">
+          Height: {{billBoard.height}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

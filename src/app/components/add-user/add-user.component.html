@@ -1,0 +1,52 @@
+<div class="container" id="addBillBoardBody">
+  <div>
+    <h1>Add New User</h1>
+  </div>
+  <form (submit)="onBBSubmit()">
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Username</label>
+      <input [(ngModel)]="name" name="name" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Password</label>
+      <input [(ngModel)]="password" name="password" type="text" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Email</label>
+      <input [(ngModel)]="email" name="email" type="email" class="form-control" >
+    </div>
+
+    <div class="form-group">
+      <label>Role</label>
+    <select class="custom-select form-control" [(ngModel)]="character" name="character"  id="inputGroupSelect01">
+      <option value="1">Addvertisement Agent</option>
+      <option value="2">Owner</option>
+      <!-- <option value="3">Three</option> -->
+    </select>
+  </div>
+
+    <!-- <div class="form-group">
+      <label for="exampleFormControlInput1">Is Verified</label>
+      
+      <input [(ngModel)]="isVerified" name="isVerified" type="number" class="form-control" >
+    </div> -->
+    <!-- <div class="form-group">
+      <label for="exampleFormControlInput1">Address</label>
+      <input [(ngModel)]="address" name="address" type="address" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Contact</label>
+      <input [(ngModel)]="contact" name="contact" type="contact" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <img [src]="imageUrl" style="width:200px; height:200px;">  
+      <label for="exampleFormControlFile1">Picture</label>
+
+        <input [(ngModel)]="image" accept="imgs/billboard_upload/*" name="image"  type="file" class="form-control-file" (change)="onSelected($event.target.files)" id="exampleFormControlFile1">
+    </div> -->
+  </form>
+  <button (click)="onRegister()" class="btn mb-2">Submit</button>
+
+</div>

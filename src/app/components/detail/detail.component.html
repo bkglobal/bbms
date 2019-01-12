@@ -1,0 +1,73 @@
+<!-- <div style="width:100%;">
+  <div *ngFor="let board of allBillBoards" style="float:left;">
+  <div   class="card">
+      
+      <div class="card-img-top card-img-top-250">
+          <img class="img-fluid" [src]="board.image" alt="Carousel 1">
+      </div>
+      <div class="card-body">
+          <h5 class="card-title card-header">{{board.title}}</h5>
+          <p class="card-text">{{board.description}}</p>
+          <p class="card-text price">Rs. {{board.price}}</p>
+          <a href="#" class="btn btn-primary detail">Detail</a>
+  
+      </div>
+  </div>
+
+</div> -->
+
+
+
+
+<div class="card" style="height: 500px;">
+  <div class="thumbnail"><img class="left" [src]="billBoardData.image" /></div>
+  <div class="right">
+    <h1 style="font-size:2em;">{{billBoardData.title| uppercase}}</h1>
+    <!-- <div class="author"><img src="https://randomuser.me/api/portraits/men/95.jpg"/>
+      <h2>Igor MARTY</h2>
+    </div> -->
+    <div class="separator"></div>
+    <p><span style="font-size:1.2em;  font-weight: bold;">{{billBoardData.description}}</span></p>
+    <p> <span style="font-size:1.2em;  font-weight: bold;">Billboard Width : <span style="float:right; margin-right:8px;">{{billBoardData.width}}"</span></span></p>
+    <p><span style="font-size:1.2em;  font-weight: bold;">Billboard Height : <span style="float:right; margin-right:8px;">{{billBoardData.height}}"</span></span></p>
+    <table class="table" style="text-align: center;">
+      <thead>
+        <th scope="col" style="color:#25806E; ">Price</th>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row" style=" font-size:1.2em; color:white; background-color: #25806E;">Rs. {{billBoardData.price}}</th>
+        </tr>
+      </tbody>
+    </table>
+    <!-- <p><span style="font-size:2em; font-weight: bold;">Price -- <span style="float:right; margin-right:8px;">Rs. {{billBoardData.price}}</span></span></p> -->
+    <!-- data-target="#exampleModal" data-toggle="modal" -->
+     <a style="cursor: pointer;"  *ngIf="isAgent" (click)="placeOrder(billBoardData.id)" >
+      <div class="order" style="background:#25806E; color:white; border-radius:0% 20%;"><i  class="fa-3x">BOOK NOW</i></div>
+    </a>
+
+  </div>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1>PLACE ORDER NOW</h1>
+          <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Your Bid Price ?? </label>
+            <input [(ngModel)]="bidPrice" name="bidPrice" type="number" class="form-control">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" (click)="placeOrder(billBoardData.id)" data-dismiss="modal">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

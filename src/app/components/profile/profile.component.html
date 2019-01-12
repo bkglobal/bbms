@@ -1,0 +1,94 @@
+<div class="content" style="margin-top: 100px;" *ngIf="userProfileData">
+    
+  <div class="card">
+    <div *ngIf="!editMode" class="firstinfo">
+      <img [src]="userProfileData.image" />
+
+      <div class="profileinfo">
+
+        <h1>{{userData.username | uppercase}}<a (click)="goToEditMode()"><i class="fa fa-edit" style="float:right;"></i></a></h1>
+
+        <p class="bio">{{userData.email}}</p>
+        <p class="bio">Address -- {{userProfileData.address}}</p>
+        <p class="bio">Contact -- {{userProfileData.contact}}</p>
+        <p class="bio">Package -- {{userProfileData.package}}</p>
+      </div>
+
+    </div>
+    <div style="margin-left:45%; font-weight: bold;">Change Picture </div><input type="file" [(ngModel)]="userProfileData.image" accept="imgs/billboard_upload/*" name="userProfileData.image"  class="form-control-file" (change)="onSelected($event.target.files)" class="bttn bttn-primary bttn-stretch bttn-fill bttn-md"
+    style="width:50%; margin:auto;" (click)="changePic()">
+
+    <button data-toggle="modal" data-target="#exampleModal" class="bttn bttn-primary bttn-stretch bttn-fill bttn-md"
+      style="width:50%; margin:auto;">CHANGE PASSWORD</button>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1>CHANGE PASSWORD</h1>
+            <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Old Password</label>
+              <input [(ngModel)]="oldPassword" name="oldPassword" type="password" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">New Password</label>
+              <input [(ngModel)]="newPassword" name="newPassword" type="password" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Confirm New Password</label>
+              <input (keyup)="isPasswordMatched()" [(ngModel)]="confirmNewPassword" name="confirmNewPassword" type="password"
+                class="form-control">
+              <p *ngIf="confirmNewPassword && !passwordMatched" class="alert alert-danger">Password doesn't match.</p>
+              <p *ngIf="confirmNewPassword && passwordMatched" class="alert alert-success">Password matched.</p>
+            </div>
+
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="bttn-md bttn-default bttn-primary" data-dismiss="modal">Close</button>
+            <button type="button" class="bttn-fill bttn-md bttn-primary" (click)="updatePassword(userData.id)"
+              data-dismiss="modal">Confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div *ngIf="editMode" class="firstinfo">
+      <img input [src]="profileImage" />
+
+      <div class="profileinfo">
+
+        <h1><input type="email" [(ngModel)]="userData.username" name="username" value="{{userData.username}}"><a
+            (click)="goToViewMode()"><i class="fa fa-check" style="float:right;"></i></a></h1>
+
+
+
+        <p class="bio"><input type="email" [(ngModel)]="userData.email" name="email" value="{{userData.email}}"></p>
+
+        <p class="bio">Address -- <input type="email" [(ngModel)]="userProfileData.address" name="address" value="{{userProfileData.address}}"></p>
+        <p class="bio">Contact -- <input type="text" [(ngModel)]="userProfileData.contact" name="contact" value="{{userProfileData.contact}}"></p>
+        <p class="bio">Package ------ {{userProfileData.package}}</p>
+
+
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="badgescard">
+    <span class="devicons"></span>
+    <span class="devicons devicons-python"></span>
+    <span class="devicons devicons-codepen"></span>
+    <span class="devicons devicons-javascript_badge"></span>
+    <span class="devicons devicons-gulp"></span>
+    <span class="devicons devicons-angular"></span>
+    <span class="devicons devicons-sass"> </span>
+  </div> -->
+</div>

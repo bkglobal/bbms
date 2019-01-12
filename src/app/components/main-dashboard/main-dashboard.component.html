@@ -1,0 +1,45 @@
+<div style="width:100%;">
+  <div style="width:40%; float:left;">
+      <nb-card >
+          <nb-list>
+            <nb-list-item *ngFor="let us of user">
+              <p>{{us.username | uppercase}}</p>
+              <p>Role - <span *ngIf="us.userrole == 1">Advertisement Agent</span> <span *ngIf="us.userrole == 2">Owner/Company</span> </p>
+            </nb-list-item>
+          </nb-list>
+        </nb-card>
+      
+  </div>
+  <div style="width:50%; float:right;">
+
+      <nb-card *ngFor="let billBoard of billBoardsTasks"  id="billBoardCard" style="width: 18rem;">
+          <div class="card-header"> 
+            <button nbButton outline status="success" style="float:right;" (click)="goToEdit(billBoard)">Edit</button>
+            <button nbButton outline status="success" style="float:right;  margin-right:10px;" (click)="removeBoard(billBoard)">Remove</button>
+          </div>
+          <img class="card-img-top" style="width:100px;" [src]="billBoard.image" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{billBoard.title}}</h5>
+            <p class="card-text">{{billBoard.description}}</p>
+            <p class="card-text">Location - {{billBoard.address}}</p>
+            <div>
+              <div style="width:50%; float:left;">
+                Price : {{billBoard.price}}
+              </div>
+              <div style="width:50%; float:left;">
+                Status: {{billBoard.status}}
+              </div>
+            </div>
+            <div>
+              <div style="width:50%; float:left;">
+                Width : {{billBoard.width}}
+              </div>
+              <div style="width:50%; float:left;">
+                Height: {{billBoard.height}}
+              </div>
+            </div>
+          </div>
+        </nb-card>
+  </div>
+
+</div>

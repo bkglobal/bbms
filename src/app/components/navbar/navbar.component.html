@@ -1,0 +1,119 @@
+<nav style="width:100%; padding:0px !important; margin:0px;  background-color:#25806E !important;" class="navbar navbar-expand-lg navbar-dark fixed-top static-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="assets/img.png" width="40" style="margin:0px 10px 15px 0px;" alt=""><span style="font-size:1.7em; font-weight: bold; color:#25806E; text-shadow:0px 0px 10px white;">BMS</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link h1-responsive font-weight-bold" href="/">Home
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link h1-responsive font-weight-bold" href="/about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link h1-responsive font-weight-bold" href="/contact">Contact</a>
+        </li>
+        <li class="nav-item" *ngIf="isLoggedIn()">
+          <a class="nav-link h1-responsive font-weight-bold" *ngIf="role == 2" [routerLink]="['/my-bill-board']">My Billboards</a>
+        </li>
+
+        <li class="nav-item" *ngIf="isLoggedIn()">
+          <a class="nav-link h1-responsive font-weight-bold" *ngIf="role == 1" [routerLink]="['/my-orders']">Current Bookings</a>
+        </li>
+
+        <div *ngIf="isLoggedIn()">
+          <li class="nav-item" *ngIf="role == 2">
+            <a class="nav-link h1-responsive font-weight-bold" *ngIf="countNo" [routerLink]="['/request']">Requests<span style="margin-left:4px;" class="badge badge-light">{{countNo}}</span></a>
+          </li>
+        </div>
+        
+        <li class="nav-item" *ngIf="isLoggedIn()">
+          <a class="nav-link h1-responsive font-weight-bold" *ngIf="role == 0" [routerLink]="['/dashboard']">Dashboard</a>
+        </li>
+
+        <li class="nav-item nav-btn h1-responsive font-weight-bold" *ngIf="!isLoggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"
+          style="float:right;">
+          <button class="nav-link nav-btn-link h1-responsive font-weight-bold" [routerLink]="['/register']">Sign up</button>
+          <button class="nav-link nav-btn-link h1-responsive font-weight-bold" [routerLink]="['/login']">Sign in</button>
+        </li>
+        <li *ngIf="isLoggedIn()" class="nav-item dropdown">
+          <div *ngIf="username" class="card" style="background: transparent;">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              <img width="25" style="border-radius:100%; background: hsl(0, 0%, 100%);" src="assets/profileIcon.png" />
+              <span style="margin-left:0px; padding-left:7px; h1-responsive font-weight-bold">{{username | uppercase}}</span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <p class="dropdown-item h1-responsive font-weight-bold" style="color:#25806E;">{{username | uppercase}}</p>
+              <a class="dropdown-item h1-responsive font-weight-bold" href="/profile"><i class="fa fa-user" style="margin-right:10px;"></i>Profile</a>
+              <a style="background:#25806E; color:white;" class="dropdown-item h1-responsive font-weight-bold" (click)="onLogoutClick()" href="#">Logout</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<!-- 
+
+<div class="top">
+  <div>
+    <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse">
+          <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0"  id="navList">
+          <li class="nav-item active" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
+            <a class="nav-link" [routerLink]="['/']">Home</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
+            <a class="nav-link" [routerLink]="['/latest']">Latest</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
+            <a class="nav-link" [routerLink]="['/contribute']">Contribute</a>
+          </li>
+          <li class="nav-item"  *ngIf="!isLoggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" style="float:right;">
+              <a class="nav-link" [routerLink]="['/register']">Register</a>
+            </li>
+          <li class="nav-item"  *ngIf="!isLoggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" style="float:right;">
+              <a class="nav-link" [routerLink]="['/login']">Login</a>
+            </li>
+          <li class="nav-item"  *ngIf="isLoggedIn()" style="float:right;">
+            <a class="nav-link"  (click)="onLogoutClick()">Logout</a>
+          </li>
+        </ul>
+
+      
+      </div>
+    </nav>
+  </div>
+</div>
+
+ -->
+
+
+
+
+
+
+
+
+
+
+
+<!-- end header -->

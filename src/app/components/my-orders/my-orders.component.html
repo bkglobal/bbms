@@ -1,0 +1,60 @@
+<div class="container">
+  <h1>MY ORDERS</h1>
+  <div id="accordion">
+    <div class="card" *ngFor="let order of orders" style = "margin-bottom: 20px;">
+      <div class="card-header" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" id="headingOne">
+        <h5 class="mb-0">
+          <button class="btn btn-link" >
+            {{order.date}}
+          </button>
+          <span  *ngIf="order.isApproved == 1" style="color:#25806E; margin-left: 10px;">Approved</span>
+          <i   *ngIf="order.isApproved == 0" (click)="removeRequest(order.id)"><img src="assets/imgs/remove.png" width="40" style="float:right; margin-right:20px;"></i>
+          <!-- *ngIf="request.isApproved == 0" -->
+          <button style="float:right" (click)="getBillBoardData(order.bb_id)" class="btn btn-default" data-toggle="modal" data-target="#exampleModal">
+            Bill Board
+          </button>
+        </h5>
+      </div>
+  
+      <!-- <div id="collapseOne" class="collapse show" style="" aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="card-body"> -->
+          <!-- Your Bid Price : RS. <span style="font-size: 1.5em;">{{order.bidPrice}}</span> -->
+        <!-- </div>
+      </div> -->
+    </div>
+
+
+
+    <div *ngIf="billBoard" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div  class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">{{billBoard.title}}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <img style="width:100%;" [src]="billBoard.image"/>
+              <h2>{{billBoard.description}}</h2>
+              <p>Height: {{billBoard.height}}</p>
+              <p>Width: {{billBoard.width}}</p>
+              <p>Price: <span style="font-size: 1.5em;">{{billBoard.price}}</span></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!orders[0]">
+        <div class="card" style="text-align: center; border:solid 2px #25806E; color:#25806E;">
+          <div class="card-body">
+            YOU HAVE NOT ORDERED ANY BILLBOARD YET.
+          </div>
+        </div>
+      </div>
+
+
+  </div>
+</div>
