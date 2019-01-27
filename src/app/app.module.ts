@@ -32,10 +32,13 @@ import { OrderNowComponent } from './components/order-now/order-now.component';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { RequestComponent } from './components/request/request.component';
 import { MainDashboardComponent } from './components/main-dashboard/main-dashboard.component';
+import { FileSelectDirective } from 'ng2-file-upload';
+
 
 
 @NgModule({
   declarations: [
+    FileSelectDirective,
     AppComponent,
     LoginComponent,
     HomeComponent,

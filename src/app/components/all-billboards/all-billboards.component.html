@@ -12,7 +12,7 @@
       <button nbButton outline status="success" style="float:right;" (click)="goToEdit(billBoard)">Edit</button>
       <button nbButton outline status="success" style="float:right;  margin-right:10px;" (click)="removeBoard(billBoard)">Remove</button>
     </div>
-    <img class="card-img-top" style="width:100px;" [src]="billBoard.image" alt="Card image cap">
+    <img class="card-img-top" style="width:100px;" src="assets/{{billBoard.image}}" alt="Card image cap">
     <div class="card-body">
       <h5 class="card-title">{{billBoard.title}}</h5>
       <p class="card-text">{{billBoard.description}}</p>

@@ -1,0 +1,12 @@
+.fbAlert{
+    /* color:#25806E; */
+    animation: animFB 1s infinite;
+}
+@-webkit-keyframes animFB {
+    0% {
+        color:white;
+    }
+    51%{
+        color:red;
+    }
+}

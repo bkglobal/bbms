@@ -10,7 +10,7 @@
           <span  *ngIf="order.isApproved == 1" style="color:#25806E; margin-left: 10px;">Approved</span>
           <i   *ngIf="order.isApproved == 0" (click)="removeRequest(order.id)"><img src="assets/imgs/remove.png" width="40" style="float:right; margin-right:20px;"></i>
           <!-- *ngIf="request.isApproved == 0" -->
-          <button style="float:right" (click)="getBillBoardData(order.bb_id)" class="btn btn-default" data-toggle="modal" data-target="#exampleModal">
+          <button style="float:right" (click)="getBillBoardData(order.bb_id, order.id, order.isFeedbackRead)" class="btn btn-default" data-toggle="modal" data-target="#exampleModal">
             Bill Board
           </button>
         </h5>
@@ -25,24 +25,38 @@
 
 
 
-    <div *ngIf="billBoard" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div  class="modal-dialog" role="document">
-          <div class="modal-content">
+    <div  class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div   class="modal-dialog" role="document">
+          <div *ngIf="billBoard" class="modal-content">
+            
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">{{billBoard.title}}</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <button  style = "margin-left: 10px;" class="bttn bttn-primary bttn-stretch bttn-fill bttn-md" *ngIf="!(isFeedbackRead == 0  || isFeedbackRead == 1)"  (click)="feedbackEnable()">Feedback</button>
+              <button type="button" class="close" data-dismiss="modal" (click)="feedbackDisable()" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
-              <img style="width:100%;" [src]="billBoard.image"/>
+            <div class="modal-body" *ngIf="!enableFeedback">
+              <img style="width:100%;" src="http://localhost:3000/getfile/{{billBoard.image}}"/>
               <h2>{{billBoard.description}}</h2>
               <p>Height: {{billBoard.height}}</p>
               <p>Width: {{billBoard.width}}</p>
               <p>Price: <span style="font-size: 1.5em;">{{billBoard.price}}</span></p>
             </div>
+            <div *ngIf="enableFeedback">
+              <div class="container">
+                  <div class="form-group">
+                      <label for="exampleFormControlTextarea1">Your Feedback ? (At most 255 characters)</label>
+                      <textarea [(ngModel)]="feedback" name="feedback" class="form-control" rows="3"></textarea>
+                      <button class="bttn bttn-primary bttn-stretch bttn-fill bttn-md"   style="width: 100%;" (click)="feedbackSend()">Send</button>
+           
+                    </div>
+
+              </div>
+                
+            </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-secondary" (click)="feedbackDisable()" data-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
@@ -58,3 +72,7 @@
 
   </div>
 </div>
+
+
+
+

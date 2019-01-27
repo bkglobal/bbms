@@ -70,4 +70,40 @@ export class RequestsService {
       .map((res) => res);
   }
 
+
+  sendFeedback(id, feedback) {
+    // console.log(currentRating);
+    
+
+    // console.log("delete");
+    // SHOULD BE ONLY id
+    let data= {
+      query :  `update requests set isFeedbackRead = 0, feedback = '${feedback}' where id = ${id}`
+    }
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Access-Control-Allow-Origin', 'http://localhost/BBMS/apps/BillBoard/BBDelete.php');
+    // console.log(data);
+    return this.http.post('http://localhost/BBMS/apps/BillBoard/BB_CUD.php', data, { headers: headers })
+      .map((res) => res);
+  }
+
+  approveFeedback(id) {
+     // console.log(currentRating);
+    
+
+    // console.log("delete");
+    // SHOULD BE ONLY id
+    let data= {
+      query :  `update requests set isFeedbackRead = 1 where id = ${id}`
+    }
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Access-Control-Allow-Origin', 'http://localhost/BBMS/apps/BillBoard/BBDelete.php');
+    // console.log(data);
+    return this.http.post('http://localhost/BBMS/apps/BillBoard/BB_CUD.php', data, { headers: headers })
+      .map((res) => res);
+  }
+
+
 }

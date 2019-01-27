@@ -9,11 +9,23 @@ import { BillboardService } from '../../services/billboard/billboard.service';
   styleUrls: ['./my-orders.component.css']
 })
 export class MyOrdersComponent implements OnInit {
+  enableFeedback: any = false;
+  feedback: any;
   orders: any;
   billBoard: any;
+  selectedBBID : any;
+  isFeedbackRead: any = null;
   constructor( private billBoardService: BillboardService, private authService: AuthService, private request:RequestsService) {
     
     this.getData();
+   }
+
+   feedbackDisable() {
+     this.enableFeedback = false;
+   }
+
+   feedbackEnable() {
+     this.enableFeedback= true;
    }
 
   private getData() {
@@ -42,11 +54,19 @@ export class MyOrdersComponent implements OnInit {
     });
 
   }
+  feedbackSend() {
+    this.request.sendFeedback(this.selectedBBID, this.feedback).subscribe(data => {
+      console.log('res get ', data);
+      this.isFeedbackRead = false;
+    });
+  }
 
 
-
-  getBillBoardData(id)
+  getBillBoardData(id, orderid, fbread)
   {
+    this.selectedBBID = orderid;
+    console.log('fbread ois  :', orderid , fbread);
+    this.isFeedbackRead = fbread;
     this.billBoardService.fetchBBById(id).subscribe((res)=>{
       this.billBoard = JSON.stringify(res);
       this.billBoard = JSON.parse(this.billBoard);

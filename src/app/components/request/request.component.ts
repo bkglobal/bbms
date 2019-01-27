@@ -11,8 +11,19 @@ import { BillboardService } from '../../services/billboard/billboard.service';
 export class RequestComponent implements OnInit {
   requests: any;
   billBoard: any;
+  feedback: any;
   constructor( private requestService: RequestsService, private billBoardService: BillboardService ,private authService:AuthService, private request: RequestsService) { 
    this.getData();
+  }
+
+  seeFeedback (feedback, id)
+  {
+    this.feedback = feedback;
+    console.log(this.feedback);
+    if(id!= null || id !== undefined) {
+    this.request.approveFeedback(id).subscribe(res=>{
+      console.log(res);
+    });}
   }
 
   getData() {

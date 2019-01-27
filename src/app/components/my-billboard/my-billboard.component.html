@@ -12,7 +12,7 @@
       <button style="float:right;" class="btn btn-success" (click)="goToEdit(billBoard)">Edit</button>
       <button style="float:right; margin-right:10px;" class="btn btn-success" (click)="removeBoard(billBoard)">Remove</button>
     </div>
-    <img class="card-img-top" style="width:200px;" [src]="billBoard.image" alt="Card image cap">
+    <img class="card-img-top" style="width:200px;" src="http://localhost:3000/getfile/{{billBoard.image}}" alt="Card image cap">
     <div class="card-body">
       <h5 class="card-title">{{billBoard.title}}</h5>
       <p class="card-text">{{billBoard.description}}</p>

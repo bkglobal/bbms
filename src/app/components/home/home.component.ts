@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {  BillboardService } from  '../../services/billboard/billboard.service';
 import { Router } from '@angular/router';
+import   {AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,9 @@ export class HomeComponent implements OnInit {
   arrFeaturedItemsActive:any = [];
   arrLatestItems: any = [];
   allBillBoards : any;
+  id: any;
+  package:any;
+  expiredBB: any;
   featureItems: any = [{ title: "ABC item", image: "#", description: "ABC item desc." },
   { title: "ABC item", image: "#", description: "ABC item desc.", price:"100" },
   { title: "ABC item", image: "#", description: "ABC item desc.", price:"100" },
@@ -27,8 +31,9 @@ export class HomeComponent implements OnInit {
   { title: "ABC item", image: "#", description: "ABC item desc." , price:"100"},
   { title: "ABC item", image: "#", description: "ABC item desc." , price:"100"}];
 
-  constructor( private router: Router, private billBoardServices : BillboardService) {
+  constructor(private authService: AuthService, private router: Router, private billBoardServices : BillboardService) {
     // window.location.reload();
+    this.id = this.authService.getUserData().userid;
     this.billBoardServices.fetch().subscribe((res)=>{
     this.allBillBoards = JSON.stringify(res);
       this.allBillBoards = JSON.parse(this.allBillBoards);
@@ -38,8 +43,68 @@ export class HomeComponent implements OnInit {
 
     });
 
+
+    
+
+    this.billBoardServices.fetchBillboardQuery('select package from userprofile where uid = '+ this.id).subscribe(res =>{
+      console.log("user is : ",res);
+      this.package = JSON.stringify(res);
+      this.package = JSON.parse(this.package);
+      this.package = (JSON.parse(this.package));
+      this.package = this.package.tasks[0].package;
+      console.log("current package iS: ",this.package);
+      this.getTimePackage(this.package);
+    }); 
     
    }
+
+
+
+  getTimePackage(pkg) {
+    if(pkg == 'monthly1')
+    {
+      this.billBoardServices.fetchBillboardQuery('SELECT * FROM `billboard` WHERE date < CURDATE()-25').subscribe(res=>{
+        console.log("user is : ",res);
+        this.expiredBB = JSON.stringify(res);
+        this.expiredBB = JSON.parse(this.expiredBB);
+        this.expiredBB = (JSON.parse(this.expiredBB));
+        this.expiredBB = this.expiredBB.tasks;
+        console.log("current package iS: ",this.expiredBB);
+      });
+
+    } else if(pkg == 'monthly2') {
+      this.billBoardServices.fetchBillboardQuery('SELECT * FROM `billboard` WHERE date < CURDATE()-55').subscribe(res=>{
+        console.log("user is : ",res);
+        this.expiredBB = JSON.stringify(res);
+        this.expiredBB = JSON.parse(this.expiredBB);
+        this.expiredBB = (JSON.parse(this.expiredBB));
+        this.expiredBB = this.expiredBB.tasks;
+        console.log("current package iS: ",this.expiredBB);
+      });
+    } else if(pkg == 'yearly1') {
+      this.billBoardServices.fetchBillboardQuery('SELECT * FROM `billboard` WHERE date < CURDATE()- 360').subscribe(res=>{
+        console.log("user is : ",res);
+        this.expiredBB = JSON.stringify(res);
+        this.expiredBB = JSON.parse(this.expiredBB);
+        this.expiredBB = (JSON.parse(this.expiredBB));
+        this.expiredBB = this.expiredBB.tasks;
+        console.log("current package iS: ",this.expiredBB);
+      });
+    } else if(pkg == 'yearly2') {
+      this.billBoardServices.fetchBillboardQuery('SELECT * FROM `billboard` WHERE date < CURDATE()- 715').subscribe(res=>{
+        console.log("user is : ",res);
+        this.expiredBB = JSON.stringify(res);
+        this.expiredBB = JSON.parse(this.expiredBB);
+        this.expiredBB = (JSON.parse(this.expiredBB));
+        this.expiredBB = this.expiredBB.tasks;
+        console.log("current package iS: ",this.expiredBB);
+      });
+
+
+    }
+  }
+
+
 
   ngOnInit() {
 

@@ -16,58 +16,88 @@
 
 </div> -->
 
-
-
-
-<div class="card" style="height: 500px;">
-  <div class="thumbnail"><img class="left" [src]="billBoardData.image" /></div>
-  <div class="right">
-    <h1 style="font-size:2em;">{{billBoardData.title| uppercase}}</h1>
-    <!-- <div class="author"><img src="https://randomuser.me/api/portraits/men/95.jpg"/>
-      <h2>Igor MARTY</h2>
-    </div> -->
-    <div class="separator"></div>
-    <p><span style="font-size:1.2em;  font-weight: bold;">{{billBoardData.description}}</span></p>
-    <p> <span style="font-size:1.2em;  font-weight: bold;">Billboard Width : <span style="float:right; margin-right:8px;">{{billBoardData.width}}"</span></span></p>
-    <p><span style="font-size:1.2em;  font-weight: bold;">Billboard Height : <span style="float:right; margin-right:8px;">{{billBoardData.height}}"</span></span></p>
-    <table class="table" style="text-align: center;">
-      <thead>
-        <th scope="col" style="color:#25806E; ">Price</th>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row" style=" font-size:1.2em; color:white; background-color: #25806E;">Rs. {{billBoardData.price}}</th>
-        </tr>
-      </tbody>
-    </table>
-    <!-- <p><span style="font-size:2em; font-weight: bold;">Price -- <span style="float:right; margin-right:8px;">Rs. {{billBoardData.price}}</span></span></p> -->
-    <!-- data-target="#exampleModal" data-toggle="modal" -->
-     <a style="cursor: pointer;"  *ngIf="isAgent" (click)="placeOrder(billBoardData.id)" >
-      <div class="order" style="background:#25806E; color:white; border-radius:0% 20%;"><i  class="fa-3x">BOOK NOW</i></div>
-    </a>
-
-  </div>
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1>PLACE ORDER NOW</h1>
-          <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Your Bid Price ?? </label>
-            <input [(ngModel)]="bidPrice" name="bidPrice" type="number" class="form-control">
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-success" (click)="placeOrder(billBoardData.id)" data-dismiss="modal">Confirm</button>
+    <div class="card" style="height: 500px; margin-bottom:20px;">
+      <div class="thumbnail">
+        <img class="left" src="http://localhost:3000/getfile/{{billBoardData.image}}" />
+      </div>
+      <div class="customRating">
+        <h3>RATING</h3>
+        <div class="starrating risingstar d-flex  flex-row-reverse ">
+          <input type="radio" id="star5" name="rating" value="5" (click)="rateBillboard($event, billBoardData.id, billBoardData.rating)"
+            [checked]="billBoardData.rating == 5" /><label for="star5" title="5 star">5</label>
+          <input type="radio" id="star4" name="rating" value="4" (click)="rateBillboard($event, billBoardData.id, billBoardData.rating)"
+            [checked]="billBoardData.rating == 4" /><label for="star4" title="4 star">4</label>
+          <input type="radio" id="star3" name="rating" value="3" (click)="rateBillboard($event, billBoardData.id, billBoardData.rating)"
+            [checked]="billBoardData.rating == 3" /><label for="star3" title="3 star">3</label>
+          <input type="radio" id="star2" name="rating" value="2" (click)="rateBillboard($event, billBoardData.id, billBoardData.rating)"
+            [checked]="billBoardData.rating == 2" /><label for="star2" title="2 star">2</label>
+          <input type="radio" id="star1" name="rating" value="1" (click)="rateBillboard($event, billBoardData.id, billBoardData.rating)"
+            [checked]="billBoardData.rating == 1" /><label for="star1" title="1 star">1</label>
         </div>
       </div>
+      <div class="right">
+        <h1 style="font-size:2em;">{{billBoardData.title| uppercase}}</h1>
+        <!-- <div class="author"><img src="https://randomuser.me/api/portraits/men/95.jpg"/>
+      <h2>Igor MARTY</h2>
+    </div> -->
+        <div class="separator"></div>
+        <p><span style="font-size:1.2em;  font-weight: bold;">{{billBoardData.description}}</span></p>
+        <p> <span style="font-size:1.2em;  font-weight: bold;">Billboard Width : <span style="float:right; margin-right:8px;">{{billBoardData.width}}"</span></span></p>
+        <p><span style="font-size:1.2em;  font-weight: bold;">Billboard Height : <span style="float:right; margin-right:8px;">{{billBoardData.height}}"</span></span></p>
+        <table class="table" style="text-align: center;">
+          <thead>
+            <th scope="col" style="color:#25806E; ">Price</th>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row" style=" font-size:1.2em; color:white; background-color: #25806E;">Rs.
+                {{billBoardData.price}}</th>
+            </tr>
+          </tbody>
+        </table>
+        <!-- <p><span style="font-size:2em; font-weight: bold;">Price -- <span style="float:right; margin-right:8px;">Rs. {{billBoardData.price}}</span></span></p> -->
+        <!-- data-target="#exampleModal" data-toggle="modal" -->
+        <a style="cursor: pointer;" *ngIf="isAgent" (click)="placeOrder(billBoardData.id)">
+          <button style="background:#25806E; width:100%; font-size: 3em; border: 0px; color:white; border-radius:0% 0%;">BOOK
+            NOW</button>
+          <!-- <div class="order" ><i  class="fa-3x">BOOK NOW</i></div> -->
+        </a>
+      </div>
+
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1>PLACE ORDER NOW</h1>
+              <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Your Bid Price ?? </label>
+                <input [(ngModel)]="bidPrice" name="bidPrice" type="number" class="form-control">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-success" (click)="placeOrder(billBoardData.id)" data-dismiss="modal">Confirm</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  <div class="container">
+    <h1>Suggestions</h1>
+    <div class="card"  style ="width:200px; height: 200px; float:left; margin-top:0px;" *ngFor="let suggest of suggestData">
+      <div class="card-header">{{suggest.title}}</div>
+      <div class="card-body" (click)="goToDetail(suggest.id)" style="padding:0px;">
+        <img src="http://localhost:3000/getfile/{{suggest.image}}" style="width:100%; height: 100%; object-fit: cover;">
+        <div style="position: absolute; top:50px; background: rgba(255,255,255,0.8); width:100%; text-align:center;">{{suggest.width}} x {{suggest.height}}</div>
+      </div>
+      <div class="card-footer">Rs. {{suggest.price}}</div>
     </div>
   </div>
-</div>

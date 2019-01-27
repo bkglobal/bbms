@@ -1,3 +1,44 @@
+.customRating{
+    background: rgba(0,0,0,0.3);
+    position: absolute;
+    top: 166px;
+    /* left: 30px; */
+    right:0;
+    
+  }
+  .customRating h3{
+    color:#25806E;
+  }
+
+  label {
+      margin-bottom: 0px !important;
+  }
+
+  .starrating > input {
+    display: none;
+  } /* Remove radio buttons */
+  
+  .starrating > label:before {
+    content: "\f005"; /* Star */
+    margin: 0px 2px 0px 2px;
+    font-size: 1em;
+    font-family: FontAwesome;
+    display: inline-block;
+  }
+  
+  .starrating > label {
+    color: #fff; /* Start color when not clicked */
+  }
+
+  .starrating > input:checked ~ label {
+    color: #ffca08;
+  } /* Set yellow color when star checked */
+  
+  /* .starrating > input:hover ~ label {
+    color: #ffca08;
+  } Set yellow color when star hover */
+  
+
 div, section {
      font-family: "Roboto", sans-serif;
   }
@@ -290,6 +331,7 @@ body{margin-top: 50px; margin-bottom: 100px;}
 
 .card-header{color:dodgerblue}
 
+
 .container{
     padding-right:0px;
     padding-left: 0px;
@@ -306,7 +348,7 @@ body{margin-top: 50px; margin-bottom: 100px;}
     border-radius: 0px; 
 }
 .content:hover{
-    box-shadow: 0px 0px 5px 2px #25806E;
+    box-shadow: 0px 0px 20px 0.1px #25806E;
 }
 .card-title{
     color:#005A04;

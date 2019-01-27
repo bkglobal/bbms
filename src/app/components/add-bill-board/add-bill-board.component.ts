@@ -3,6 +3,9 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { BillboardService } from '../../services/billboard/billboard.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import {  FileUploader, FileSelectDirective } from 'ng2-file-upload/ng2-file-upload';
+
+const URL = 'http://localhost:3000/api/upload';
 
 @Component({
   selector: 'app-add-bill-board',
@@ -22,14 +25,26 @@ export class AddBillBoardComponent implements OnInit {
   category:any;
   imageUrl:any = "assets/bbimg.jpg";
   address: any;
+  uploadedImage: any;
+  public uploader: FileUploader = new FileUploader({url: URL, itemAlias: 'photo'});
+
   constructor(private router: Router, private http: HttpClient, private authService: AuthService, private billBoardService: BillboardService) { }
 
   ngOnInit() {
+    this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
+    this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+         console.log('ImageUpload:uploaded:', response);
+         const res = JSON.parse(response);
+         this.uploadedImage = res.result;
+     };
   }
-  onBBSubmit() {
+
+
+  async onBBSubmit() {
     console.log(this.title, this.description, this.height, this.width, this.price, this.picture);
     var id = this.authService.getUserData().userid;
-    console.log(this.imageUrl);
+    // console.log(this.imageUrl);
+    console.log(this.uploadedImage);
     this.billBoard = {
       'ownerId': id,
       'status': '1',
@@ -38,7 +53,7 @@ export class AddBillBoardComponent implements OnInit {
       'width': this.width,
       'height': this.height,
       'price': this.price,
-      'picture': this.imageUrl,
+      'picture': this.uploadedImage,
       'category': this.category,
       'address' : this.address
     }
@@ -51,6 +66,7 @@ export class AddBillBoardComponent implements OnInit {
   }
 
   onSelected(event: FileList) {
+    this.uploader.uploadAll();
     console.log(event);
     this.selectedPicture = event.item(0);
     var reader = new FileReader();
